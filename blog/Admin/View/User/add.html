@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
+<head>
+  <include file="./Public/head"/>
+</head>
+<body>
+<div id="wrapper">
+  <include file="./Public/header"/>
+  <!-- /. NAV TOP  -->
+  <include file="./Public/left"/>
+  <!-- /. NAV SIDE  -->
+  <div id="page-wrapper">
+    <div id="page-inner">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="page-head-line">新增用户</h1>
+        </div>
+      </div>
+      <!-- /. ROW  -->
+      <div class="row">
+        <div class="col-xs-12">
+          <!-- PAGE CONTENT BEGINS -->
+        </div>
+        <div class="space-4"></div>
+        <form class="form-horizontal" id="form" method="post" action="{:U('Add')}">
+          <div class="modal-body">
+            <div class="form-group">
+              <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 用户名 </label>
+              <div class="col-sm-9">
+                <input type="text" name="username" id="name" placeholder="用户名" class="col-xs-10 col-sm-5" value="">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 密码 </label>
+              <div class="col-sm-9">
+                <input type="password" name="password" id="k" placeholder="密码" class="col-xs-10 col-sm-5" value="">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 确认密码</label>
+              <div class="col-sm-9">
+                <input type="password" name="repassword" id="k" placeholder="确认密码" class="col-xs-10 col-sm-5" value="">
+              </div>
+            </div>
+            <div class="space-4"></div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label no-padding-right" for="form-field-2"> 用户组 </label>
+              <div class="col-sm-9">
+                <select name="roleid" class="col-xs-10 col-sm-5">
+                  <foreach name="role" item ="v">
+                    <option value="{$v.id}">{$v.groupname}</option>
+                  </foreach>
+                </select>
+                <span class="help-inline col-xs-12 col-sm-7">
+              <span class="middle">请慎重选择用户组</span>
+            </span>
+              </div>
+            </div>
+            <div class="space-4"></div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label no-padding-right" for="form-field-2">头像</label>
+              <div class="col-sm-9">
+                <input type="text" name="photo" id="photo" placeholder="头像" class="col-xs-10 col-sm-5" value="">
+              </div>
+            </div>
+            <div class="space-4"></div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label no-padding-right" for="form-field-2">邮箱</label>
+              <div class="col-sm-9">
+                <input type="text" name="email" id="email" placeholder="邮箱" class="col-xs-10 col-sm-5" value="">
+              </div>
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+            </button>
+            <button type="submit" class="btn btn-primary">
+              提交更改
+            </button>
+          </div>
+        </form>
+
+        <!-- PAGE CONTENT ENDS -->
+      </div><!-- /.col -->
+    </div><!-- /.row -->
+  </div>
+  <!-- /. PAGE INNER  -->
+</div>
+<!-- /. PAGE WRAPPER  -->
+</div>
+<!-- /. WRAPPER  -->
+<!-- /. FOOTER  -->
+<include file="./Public/footer"/>
+<script src="{$Think.ADMIN_PUBLIC}/js/bootbox.js"></script>
+<script src="http://code.jquery.com/jquery-1.4.4.min.js" type="text/javascript"></script>
+<!-- inline scripts related to this page -->
+<script>
+    $(".dellink").click(function () {
+        var url = $(this).attr('val');
+        bootbox.confirm({
+            title: "系统提示",
+            message: "是否要删除该记录？",
+            callback: function (result) {
+                if (result) {
+                    window.location.href = url;
+                }
+            },
+            buttons: {
+                "cancel": {"label": "取消"},
+                "confirm": {
+                    "label": "确定",
+                    "className": "btn-danger"
+                }
+            }
+        });
+    });
+    $("#checkall").click(
+        function () {
+            if (this.checked) {
+                $("input[name='checkname']").attr('checked', true)
+            } else {
+                $("input[name='checkname']").attr('checked', false)
+            }
+        }
+    );
+
+
+    $(function () {
+
+//全选/全不选
+        $("#all").click(function () {
+            $("[class=items]:checkbox").attr("checked", this.checked);
+        });
+        $("[class=items]:checkbox").click(function () {
+            var flag = true;
+            $("[class=items]:checkbox").each(function () {
+                if (!this.checked) {
+                    flag = false;
+                }
+            });
+            $("#all").attr("checked", flag);
+        })
+    })
+</script>
+
+</body>
+</html>

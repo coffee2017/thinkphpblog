@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <include file="./Public/head"/>
+</head>
+<body>
+<div id="wrapper">
+  <include file="./Public/header"/>
+  <!-- /. NAV TOP  -->
+  <include file="Public:left"/>
+  <!-- /. NAV SIDE  -->
+  <div id="page-wrapper">
+    <div id="page-inner">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="page-head-line">网站设置</h1>
+        </div>
+      </div>
+      <!-- /. ROW  -->
+      <div class="row">
+        <div class="col-xs-12">
+          <!-- PAGE CONTENT BEGINS -->
+          <form class="form-horizontal" id="form" role="form" method="post" action="__SELF__">
+            <div class="space-4"></div>
+            <div class="form-group">
+              <label class="col-sm-1 control-label no-padding-right" for="form-field-1">
+                网站名称 </label>
+              <div class="col-sm-9">
+                <input type="text" name="sitename" id="sitename" placeholder="网站SEO标题"
+                       class="col-xs-10 col-sm-5" value="{:C('sitename')}">
+                <span class="help-inline col-xs-12 col-sm-7">
+												<span class="middle">前台调用：<literal>{:C('sitename')}</literal></span>
+                </span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-1 control-label no-padding-right" for="form-field-1"> 网站标题 </label>
+              <div class="col-sm-9">
+                <input type="text" name="title" id="title" placeholder="网站标题" class="col-xs-10 col-sm-5" value="{:C('title')}">
+                <span class="help-inline col-xs-12 col-sm-7">
+                  <span class="middle">网站标题，前台调用：<literal>{:C('title')}</literal>
+                  </span>
+                </span>
+              </div>
+            </div>
+            <div class="space-4"></div>
+            <div class="form-group">
+              <label class="col-sm-1 control-label no-padding-right" for="form-field-2"> 关键词 </label>
+              <div class="col-sm-9">
+                <input type="text" name="keywords" id="keywords" placeholder="关键词"
+                       class="col-xs-10 col-sm-5" value="{:C('keywords')}">
+                <span class="help-inline col-xs-12 col-sm-7">
+												<span class="middle">网站关键词，前台调用：<literal>{:C('keywords')}</literal></span>
+											</span>
+              </div>
+            </div>
+            <div class="space-4"></div>
+            <div class="form-group">
+              <label class="col-sm-1 control-label no-padding-right" for="form-field-2"> 网站描述 </label>
+              <div class="col-sm-9">
+                <textarea name="description" id="description" placeholder="网站描述" class="col-xs-10 col-sm-5" rows="5">{:C('description')}</textarea>
+                <span class="help-inline col-xs-12 col-sm-7">
+                  <span class="middle">网站描述，前台调用：<literal>{:C('description')}</literal></span>
+                </span>
+              </div>
+            </div>
+
+            <div class="space-4"></div>
+
+            <div class="form-group">
+              <label class="col-sm-1 control-label no-padding-right" for="form-field-2"> 底部内容 </label>
+              <div class="col-sm-9">
+                <textarea name="footer" id="footer" placeholder="底部内容" class="col-xs-10 col-sm-5" rows="5">{:C('footer')}</textarea>
+                <span class="help-inline col-xs-12 col-sm-7">
+                  <span class="middle">
+                    网站的版权、统计代码等，支持HTML代码，请谨慎使用，前台调用：<literal>{:C('footer')}</literal>
+                  </span>
+                </span>
+              </div>
+            </div>
+            <foreach name="var"  item="v">
+              <div class="form-group">
+                <label class="col-sm-1 control-label no-padding-right" for="form-field-1">
+                  {$v.k}</label>
+                <div class="col-sm-9">
+                  <input type="text" name="{$v.k}" id="test" placeholder="{$v.v}"
+                         class="col-xs-10 col-sm-5" value="{$v.v}">
+                  <span class="help-inline col-xs-12 col-sm-7">
+												<span class="middle">自定义变量，前台调用：<literal>{:C('</literal>{$v.k}<literal>')}</literal></span>
+											</span>
+                </div>
+              </div>
+              <div class="space-4"></div>
+            </foreach>
+
+            <div class="col-md-offset-2 col-md-9">
+              <input class="btn btn-info submit" type="submit" value="提交">
+              <!--
+              <button class="btn btn-info submit" type="button">
+                <i class="icon-ok bigger-110"></i>
+                提交
+              </button>
+
+              &nbsp; &nbsp; &nbsp;
+              <button class="btn" type="reset">
+                <i class="icon-undo bigger-110"></i>
+                重置
+              </button>
+              -->
+            </div>
+          </form>
+          <!-- PAGE CONTENT ENDS -->
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div>
+    <!-- /. PAGE INNER  -->
+  </div>
+  <!-- /. PAGE WRAPPER  -->
+</div>
+<!-- /. WRAPPER  -->
+<!-- /. FOOTER  -->
+<include file="./Public/footer"/>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>{$blog.blog_seotitle}</title>
+  <meta name="keywords" content="{$blog.keywords}"/>
+  <meta name="description" content="{$blog.description}"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <include file="./Public/head"/>
+</head>
+<body>
+<header>
+  <include file="./Public/header"/>
+</header>
+<article>
+  <div class="container">
+
+    <div class="about left">
+
+      <ul>
+        <h4 class="atitle"><span><?php echo mb_substr(strip_tags($blog['date']),0,10,"UTF-8"); ?></span>{$blog.title}</h4>
+        <p class="newsnav">您现在的位置是:<a href="/">首页</a>&nbsp;>&nbsp;<a href="{:U('/cate/'.$blog['navid'])}">{$blog.naviname}</a></p>
+        {$blog.content}
+      </ul>
+      <div class="keybq">
+        <p><span>关键字词</span>：{$blog.keywords}</p>
+      </div>
+      <div class="nextinfo">
+        <if condition="$front neq null"><p>上一篇：<a href="{:U('/article/'.$front['gid'])}">{$front['title']}</a></p></if>
+        <if condition="$after neq null"> <p>下一篇：<a href="{:U('/article/'.$after['gid'])}">{$after['title']}</a></p></if>
+      </div>
+      <div class="otherlink">
+        <h2>相关文章</h2>
+        <ul>
+          <foreach name="other" item="v">
+            <li><a href="{:U('/article/'.$v['gid'])}">{$v['title']}</a></li>
+          </foreach>
+        </ul>
+      </div>
+      <div class="gbko">
+
+        <!--PC版-->
+        <div id="SOHUCS" sid="{$blog.gid}"></div>
+        <script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js" ></script>
+        <script type="text/javascript">
+            window.changyan.api.config({
+                appid: 'cytdVHS4h',
+                conf: 'prod_e8ff2b81402803e9bdf3d2f5cdea5b5a'
+            });
+        </script>
+      </div>
+    </div>
+
+  </div>
+  </div>
+  </aside>
+</article>
+<footer> <include file="./Public/footer"/></footer>
+</body>
+</html>

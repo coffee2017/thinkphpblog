@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <include file="./Public/head" />
+</head>
+<body>
+    <div id="wrapper">
+        <include file="./Public/header" />
+        <!-- /. NAV TOP  -->
+        <include file="./Public/left" />
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+            <div id="page-inner">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="page-head-line">控制台</h1>
+                    </div>
+                </div>
+                <!-- /. ROW  -->
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="main-box mb-red">
+                            <h3>网站信息</h3>
+                            <p><span>PHP版本：{$Think.PHP_VERSION}</span> </p>
+                            <p><span>MySQL版本：{$mysql}</span> </p>
+                            <p>数据库表前缀:{:C('DB_PREFIX')}</p>
+                            <p>服务器：{$Think.PHP_OS}</p>
+                            <p>PHP运行方式：{$Think.PHP_SAPI}</p>
+                            <p>服务器IP:{$_SERVER['SERVER_ADDR']}</p>
+
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /. ROW  -->
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+
+    <!-- /. FOOTER  -->
+<include file="./Public/footer" />
+    
+
+
+</body>
+</html>

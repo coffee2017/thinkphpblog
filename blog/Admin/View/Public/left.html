@@ -1,0 +1,38 @@
+<!-- /. NAV TOP  -->
+<nav class="navbar-default navbar-side" role="navigation">
+  <div class="sidebar-collapse">
+    <ul class="nav" id="main-menu">
+      <li>
+        <div class="user-img-div">
+          <img src="{$Think.ADMIN_PUBLIC}/assets/img/user.png" class="img-thumbnail"/>
+
+          <div class="inner-text">
+            {$value = session(username)}
+            <br/>
+            <small>Last Login : 3 Weeks Ago</small>
+          </div>
+        </div>
+      <li>
+        <a  href="{:U('Index/Index')}"><i class="fa fa-dashboard "></i>控制台</a>
+      </li>
+      </li>
+      <foreach name="navs" item="v">
+        <li>
+          <a href="{:U($v['url'])}"><i class="fa {$v.ico}"></i>{$v.naviname} <span class="fa arrow"></span></a>
+          <ul class="nav nav-second-level">
+            <foreach name="navp" item="vp">
+              <if condition="$v.id eq $vp['pid']">
+
+                <li>
+                  <a  href="{:U($vp['url'])}" <if condition="$active eq $vp['url']"> class='active-menu'</if>><i class="fa {$vp.ico}"></i>{$vp.naviname}</a>
+                </li>
+              </if>
+            </foreach>
+          </ul>
+        </li>
+      </foreach>
+    </ul>
+
+  </div>
+
+</nav>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
+<head>
+  <include file="./Public/head"/>
+</head>
+<body>
+<div id="wrapper">
+  <include file="./Public/header"/>
+  <!-- /. NAV TOP  -->
+  <include file="./Public/left"/>
+  <!-- /. NAV SIDE  -->
+  <div id="page-wrapper">
+    <div id="page-inner">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="page-head-line">前台文章列表</h1>
+        </div>
+      </div>
+      <!-- /. ROW  -->
+      <div class="row">
+        <div class="col-xs-12">
+          <!-- PAGE CONTENT BEGINS -->
+          <div class="cf">
+            <form class="form-inline" action="" method="get">
+              <a class="btn btn-info" href="{:U('Blog/add')}" value="">新增</a>
+              <label class="inline">所属分类</label>
+              <select name="navid" class="form-control">
+                <option value="">--分类--</option>
+                {$category}
+              </select>
+              <label class="inline">文章标题</label>
+              <input type="text" name="title" value="" class="form-control">
+
+              <label class="inline">&nbsp;&nbsp;文章排序：</label>
+              <select name="order" class="form-control">
+                <option value="desc" selected>发布时间降序</option>
+                <option value="asc" <if condition = "$_GET['order'] eq asc">selected</if>>发布时间升序</option>
+              </select>
+
+
+              <button type="submit" class="btn btn-purple btn-sm">
+                <span class="ace-icon fa fa-search icon-on-right bigger-110"></span>
+                搜索
+              </button>
+            </form>
+          </div>
+        </div>
+        <div class="space-4"></div>
+        <form id="form" method="post" action="">
+          <table class="table table-striped table-bordered">
+            <thead>
+            <tr>
+              <th class="center"><input id="check-all" type="checkbox" value=""></th>
+              <th>所属分类</th>
+              <th class="col-xs-5">文章标题</th>
+              <th>发布时间</th>
+              <th>修改时间</th>
+              <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <foreach name="blog" item="v">
+              <tr>
+                <td class="center">
+                  <input class="items" type="checkbox" name="gid" value="{$v.gid}">
+                </td>
+                <td>
+                  <a href="{:U('Blog/index',array('navid'=>$v['id']))}" title="{$v.naviname}">{$v.naviname}</a>
+                </td>
+                <td>{$v.title}</td>
+                <td>{$v.date}</td>
+                <td>{$v.edit_date}</td>
+                <td>
+                  <a href="{:U('Blog/edit',array('gid'=>$v['gid']))}">
+                    <i class="ace-icon fa fa-pencil bigger-100"></i>修改</a>&nbsp&nbsp;
+                  <a href="javascript:;" val="{$v.gid}" class="dellink">
+                    <i class="ace-icon fa fa-trash-o bigger-100 red"></i>删除
+                  </a>
+                </td>
+              </tr>
+            </foreach>
+            </tbody>
+          </table>
+
+        </form>
+        <input type="submit" class="dellink" value="删除所选"></br>
+        {$page}
+        <!-- PAGE CONTENT ENDS -->
+      </div><!-- /.col -->
+    </div><!-- /.row -->
+  </div>
+  <!-- /. PAGE INNER  -->
+</div>
+<!-- /. PAGE WRAPPER  -->
+</div>
+<!-- /. WRAPPER  -->
+
+<!-- /. FOOTER  -->
+<include file="./Public/footer"/>
+<script src="{$Think.ADMIN_PUBLIC}/js/bootbox.js"></script>
+<script src="http://code.jquery.com/jquery-1.4.4.min.js" type="text/javascript"></script>
+<!-- inline scripts related to this page -->
+<script>
+    $(".dellink").click(function () {
+        var obj = $(this);
+        var id = obj.attr('val');
+        if($(this).attr("checked")==false){
+            var id ="";
+            $("input[name=gid]").each(function() {
+                if ($(this).attr("checked")) {
+                    id += $(this).val()+',';
+                }
+            });
+        }
+        bootbox.confirm({
+            title: "系统提示",
+            message: "是否要删除该文章？",
+            callback: function (result) {
+
+                if (result) {
+                    $.get("/index.php/Admin/Blog/index/?id=" + id, function (result) {
+                        if (result == 1) {
+                            window.location.reload(true);
+                            return;
+                        } else {
+                            bootbox.dialog({
+                                message: "抱歉，系统错误，请稍后再试。",
+                                buttons: {
+                                    "success": {
+                                        "label": "确定",
+                                        "className": "btn-danger"
+                                    }
+                                }
+                            });
+                            return;
+                        }
+                    });
+                } else {
+                    return true;
+                }
+            },
+            buttons: {
+                "cancel": {"label": "取消"},
+                "confirm": {
+                    "label": "确定",
+                    "className": "btn-danger"
+                }
+            }
+        });
+    });
+    $("#check-all").click(
+        function () {
+            if (this.checked) {
+                $("input[name='gid']").attr('checked', true)
+            } else {
+                $("input[name='gid']").attr('checked', false)
+            }
+        }
+    );
+
+
+    $(function () {
+
+//全选/全不选
+        $("#check-all").click(function () {
+            $("[class=items]:checkbox").attr("checked", this.checked);
+        });
+        $("[class=items]:checkbox").click(function () {
+            var flag = true;
+            $("[class=items]:checkbox").each(function () {
+                if (!this.checked) {
+                    flag = false;
+                }
+            });
+            $("#all").attr("checked", flag);
+        })
+    })
+</script>
+
+</body>
+</html>

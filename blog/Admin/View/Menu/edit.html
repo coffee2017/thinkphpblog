@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <include file="./Public/head" />
+</head>
+<body>
+<div id="wrapper">
+    <include file="./Public/header" />
+    <!-- /. NAV TOP  -->
+    <include file="./Public/left" />
+    <!-- /. NAV SIDE  -->
+    <div id="page-wrapper">
+        <div id="page-inner">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="page-head-line">修改菜单</h1>
+                </div>
+            </div>
+            <!-- /. ROW  -->
+            <div class="row">
+                <div class="col-xs-12">
+                    <!-- PAGE CONTENT BEGINS -->
+                    <foreach name="data" item="vv">
+                    <form class="form-horizontal" id="form" method="post" action="{:U("Edit")}">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label no-padding-right" for="form-field-10">上级菜单 </label>
+                            <input name="id" value="{$vv.id}" type="hidden">
+                            <div class="col-sm-9">
+                                <select id="pid" name="pid" class="rcol-xs-10 col-sm-5">
+                                    <option value="0" selected="selected">顶级菜单</option>
+                                    <foreach name="navs" item ="v">
+                                        <if condition="strtoupper($v['id']) neq strtoupper($vv['pid'])">
+                                            <option value="{$v.id}">{$v.naviname}</option>
+                                            <else />
+                                            <option value="{$v.id}" selected="selected">{$v.naviname}</option>
+                                        </if>
+                                        <foreach name="navp" item="vp">
+                                            <if condition="$v.id eq $vp['pid']">
+                                                <option value="{$vp.id}">┗━{$vp.naviname}</option>
+                                            </if>
+                                        </foreach>
+
+                                    </foreach>
+                                    <span class="help-inline col-xs-12 col-sm-7">
+												<span class="middle"></span>
+											</span>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 菜单名称 </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="naviname" id="title" class="rcol-xs-10 col-sm-5" value="{$vv.naviname}">
+                                <span class="help-inline col-xs-12 col-sm-7">
+												<span class="middle"></span>
+											</span>
+                            </div>
+                        </div>
+
+                        <div class="space-4"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label no-padding-right" for="form-field-2"> 链接 </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="url" id="name" placeholder="链接，如：Index/index" class="col-xs-10 col-sm-5" value="{$vv.url}">
+                                <span class="help-inline col-xs-12 col-sm-7">
+												<span class="middle"></span>
+											</span>
+                            </div>
+                        </div>
+
+                        <div class="space-4"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label no-padding-right" for="form-field-2">
+                                ICON图标 </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="ico" id="icon" placeholder="ICON图标" class="col-xs-10 col-sm-5" value="{$vv.ico}">
+                                <span class="help-inline col-xs-12 col-sm-7">
+												<span class="middle"></span>
+											</span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label no-padding-right" for="form-field-2"> 显示状态 </label>
+                            <div class="control-label no-padding-left col-sm-1">
+                                <label>
+                                    <input name="islink" id="islink" value="1" class="ace ace-switch ace-switch-2" type="checkbox">
+                                    <span class="lbl"></span>
+                                </label>
+                            </div>
+                            <span class="help-inline col-xs-12 col-sm-7">
+												<span class="middle"></span>
+										</span>
+                        </div>
+                        <div class="space-4"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label no-padding-right" for="form-field-2"> 排序 </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="o" id="o" placeholder="" class="col-xs-10 col-sm-5" value="">
+                                <span class="help-inline col-xs-12 col-sm-7">
+												<span class="middle">越小越靠前</span>
+											</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            提交更改
+                        </button>
+                    </div>
+                    </form>
+                    </foreach>
+                    <!-- PAGE CONTENT ENDS -->
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div>
+        <!-- /. PAGE INNER  -->
+    </div>
+    <!-- /. PAGE WRAPPER  -->
+</div>
+<!-- /. WRAPPER  -->
+
+<!-- /. FOOTER  -->
+<include file="./Public/footer" />
+
+
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+[ 2017-07-28T16:26:57+08:00 ] 127.0.0.1 /blog/index.php/blog/index.php/Admin/Variable/edit.html.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+ERR: 无法加载模块:Blog
+
+[ 2017-07-28T16:27:32+08:00 ] 127.0.0.1 /blog/index.php/blog/index.php/Admin/Variable/index.html.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+ERR: 无法加载模块:Blog
+
+[ 2017-07-28T16:27:57+08:00 ] 127.0.0.1 /blog/index.php/blog/index.php/Admin/Variable/index.html.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+ERR: 无法加载模块:Blog
+
+[ 2017-07-28T16:39:09+08:00 ] 127.0.0.1 /blog/index.php/Variable/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+ERR: 无法加载模块:Variable
+
